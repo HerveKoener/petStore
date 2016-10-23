@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+    <title>Pet Store</title>
+    <style type="text/css">
+        [ng\:cloak], [ng-cloak], .ng-cloak {
+            display: none !important;
+        }
+    </style>
+</head>
+<body ng-app="petStore" ng-cloak class="ng-cloak">
+<div class="container" ng-controller="AppController">
+    <div  ng-show="! authenticated">
+        <h1>Login</h1>
+        <div class="alert alert-danger" ng-show="error">
+            There was a problem logging in. Please try again.
+        </div>
+        <form role="form" ng-submit="login()">
+            <div class="form-group">
+                <label for="username">Username:</label> <input type="text"
+                                                               class="form-control" id="username" name="username" ng-model="credentials.username"/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label> <input type="password"
+                                                               class="form-control" id="password" name="password" ng-model="credentials.password"/>
+            </div>
+            <button type="submit" ng-disabled="!credentials.username || !credentials.password" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div  ng-show="authenticated">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#" ng-click="logout()">logout</a>
+                </div>
+            </div>
+        </nav>
+        <div class="page-header">
+            <h1>Pet Shore</h1>
+        </div>
+        <div class="alert alert-info" role="alert" ng-hide="pets &amp;&amp; pets.length > 0">
+            There are no pets yet in the store.
+        </div>
+        <form class="form-horizontal" role="form" ng-submit="addPet(newPet)">
+            <div class="form-group" ng-repeat="pet in pets">
+                <div class="checkbox col-xs-9">
+                    <label>
+                        {{pet.name}}
+                    </label>
+                </div>
+                <div class="col-xs-3">
+                    <button class="pull-right btn btn-danger" type="button" title="Delete"
+                            ng-click="deletePet(pet)"
+                            ng-show="roles.indexOf('ROLE_USER_B')!=-1">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button type="button" class="btn btn-default" title="Detail"
+                            ng-click="detailPet(pet)">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </div>
+            </div>
+            <hr />
+            <div ng-show="roles.indexOf('ROLE_USER_B')!=-1">
+                <div class="form-group" ng-repeat="error in errors">
+                    <div class="alert alert-danger" role="alert">
+                        {{error.defaultMessage}}
+                    </div>
+                </div>
+                <h2>Add a new pet</h2>
+                <div class="input-group">
+                    <input type="text" class="form-control" ng-model="newPet" placeholder="Enter the name..." />
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit" ng-disabled="!newPet" title="Add">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+        <h2 ng-hide="!pet">Here is the detail of our pet</h2>
+        <div class="alert alert-info" role="alert" ng-hide="!pet">
+            <label>
+                {{pet.name}}
+            </label>
+        </div>
+    </div>
+</div>
+<script src="/webjars/angularjs/1.5.8/angular.js"></script>
+<script src="/webjars/angularjs/1.5.8/angular-resource.js"></script>
+<script src="/webjars/angularjs/1.5.8/angular-route.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/services.js"></script>
+<link rel="stylesheet" href="/webjars/bootstrap/3.3.7-1/css/bootstrap.css">
+</body>
+</html>
