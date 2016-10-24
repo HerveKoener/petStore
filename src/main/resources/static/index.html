@@ -67,21 +67,21 @@
                         {{error.defaultMessage}}
                     </div>
                 </div>
-                <h2>Add a new pet</h2>
-                <div class="input-group">
-                    <input type="text" class="form-control" ng-model="newPet" placeholder="Enter the name..." />
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit" ng-disabled="!newPet" title="Add">
-                            <span class="glyphicon glyphicon-plus"></span>
-                        </button>
-                    </span>
+                <h2>Add a new Pet</h2>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter the name..." ng-model="newPet.name"/>
                 </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="price" name="price" placeholder="Enter the price..." ng-model="newPet.price"/>
+                </div>
+                <button type="submit" ng-disabled="!newPet.name || !newPet.price" class="btn btn-primary">Add</button>
+                <hr />
             </div>
         </form>
         <h2 ng-hide="!pet">Here is the detail of our pet</h2>
         <div class="alert alert-info" role="alert" ng-hide="!pet">
             <label>
-                {{pet.name}}
+                {{pet.name}} ({{pet.price}} &euro;)
             </label>
         </div>
     </div>

@@ -17,6 +17,26 @@ public class Pet implements Serializable{
     @Size(max = 10)
     private String name;
 
+    @Column
+    @NotNull
+    private Double price;
+
+    /**
+     *
+     * @return The price.
+     */
+    public Double getPrice() {
+        return price;
+    }
+
+    /**
+     *
+     * @param price Set the price.
+     */
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     /**
      *
      * @return The name.

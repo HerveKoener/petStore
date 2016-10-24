@@ -12,10 +12,11 @@
             });
         };
 
-        $scope.addPet = function(name) {
+        $scope.addPet = function(newPet) {
             //Add a new pet
             new Pet({
-                name: name,
+                name: newPet.name,
+                price: newPet.price,
                 checked: false
             }).$save(function(pet) {
                 $scope.errors = null;
