@@ -11,6 +11,9 @@ import javax.validation.Valid;
 import java.security.Principal;
 import java.util.List;
 
+/**
+ * Controller of the pet Store.
+ */
 @RestController
 public class StoreController {
 

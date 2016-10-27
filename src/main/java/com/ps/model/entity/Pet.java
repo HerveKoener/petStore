@@ -5,6 +5,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
+/**
+ * Represents a pet in the database
+ */
 @Entity
 public class Pet implements Serializable{
 
